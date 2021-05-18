@@ -6,6 +6,7 @@ RSpec.describe 'HomePages', type: :system do
   before do
     driven_by(:rack_test)
     Product.destroy_all
+    create_list(:category, 3)
     create_list(:product, 5, :with_photo)
     create_list(:product, 5)
   end

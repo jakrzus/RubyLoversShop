@@ -2,8 +2,9 @@
 
 FactoryBot.define do
   factory :product do
-    sequence(:name) { |n| "Product#{n}" }
-    price { '9.99' }
+    name { Faker::Vehicle.model }
+    price { '999.99' }
+    category { Category.any? ? Category.all.sample : create(:category) }
     trait :with_photo do
       after(:create) do |product|
         file = File.open(Rails.root.join('spec/support/watch.webp'))

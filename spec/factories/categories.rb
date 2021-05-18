@@ -2,6 +2,6 @@
 
 FactoryBot.define do
   factory :category do
-    name { 'MyString' }
+    name { Faker::Vehicle.car_type }
   end
 end
