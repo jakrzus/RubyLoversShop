@@ -2,6 +2,6 @@
 
 FactoryBot.define do
   factory :category do
-    name { Faker::Vehicle.car_type }
+    name { Faker::Vehicle.unique.car_type }
   end
 end
