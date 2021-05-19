@@ -24,4 +24,13 @@ RSpec.describe 'HomePages', type: :system do
 
     expect(page.all('.product-card').count).to eq(category.products.count)
   end
+
+  it 'filters products via brand' do
+    visit root_path
+    brand = Brand.first
+    select brand.name, from: 'filter_brand_id'
+    click_on 'Save Filter'
+
+    expect(page.all('.product-card').count).to eq(brand.products.count)
+  end
 end
