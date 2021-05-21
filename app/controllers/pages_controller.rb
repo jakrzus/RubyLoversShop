@@ -3,7 +3,7 @@
 class PagesController < ApplicationController
   def home
     @products = Product.where(query_params[:filter])
-    @categories = Category.all
+    @categories_select_params = Category.select_params
   end
 end
 

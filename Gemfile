@@ -11,8 +11,8 @@ gem 'puma', '~> 4.1'
 gem 'sass-rails', '>= 6'
 gem 'webpacker', '~> 4.0'
 gem 'bootsnap', '>= 1.4.2', require: false
-gem 'faker'
 group :development, :test do
+  gem 'faker'
   gem 'pry-rails'
   gem 'rspec-rails', '~> 4.0.0'
   gem 'factory_bot_rails'
