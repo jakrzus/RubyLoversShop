@@ -1,3 +1,17 @@
+<%= form_for  :filter, url: root_path, method: :get, local: false do |f|%>
+  <div class="row">
+    <div class="col">
+      <%= f.label :category_id, "Category" %>
+      <%= f.select :category_id, @categories_select_params, class: "form-control"%>
+    </div>
+    <div class="col">
+      <%# Place for brand select %>
+    </div>
+    <div class="col">
+      <%= f.submit class: "btn btn-primary"%>
+    </div>
+  </div>
+<% end %>
 <div class="row">
   <%= render  @products %>
 </div>
