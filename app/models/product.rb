@@ -6,4 +6,6 @@ class Product < ApplicationRecord
   has_many_attached :photos
   belongs_to :category
   belongs_to :brand
+
+  scope :filtered, ->(params) { params ? where(params.compact_blank) : all }
 end

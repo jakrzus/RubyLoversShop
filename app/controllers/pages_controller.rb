@@ -4,8 +4,7 @@ class PagesController < ApplicationController
   def home
     @categories_select_params = Category.select_params
     @brands_select_params = Brand.select_params
-    @products = Product.all
-    @products = @products.where(filter_params.compact_blank) if filter_params
+    @products = Product.filtered(filter_params)
   end
 
   private
