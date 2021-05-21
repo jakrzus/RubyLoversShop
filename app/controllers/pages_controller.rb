@@ -11,6 +11,6 @@ class PagesController < ApplicationController
   private
 
   def filter_params
-    params.require(:filter).permit(:category_id, :brand_id)
+    params.require(:filter).permit(:category_id, :brand_id) if params[:commit]
   end
 end
