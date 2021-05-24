@@ -2,10 +2,11 @@
   <div class="row">
     <div class="col">
       <%= f.label :category_id, "Category" %>
-      <%= f.select :category_id, @categories_select_params, class: "form-control"%>
+      <%= f.select :category_id, @categories_select_params, class: "form-control", include_blank: true%>
     </div>
     <div class="col">
-      <%# Place for brand select %>
+      <%= f.label :brand_id, "Brand" %>
+      <%= f.select :brand_id, @brands_select_params, class: "form-control", include_blank: true%>
     </div>
     <div class="col">
       <%= f.submit class: "btn btn-primary"%>

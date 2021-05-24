@@ -2,13 +2,14 @@
 
 class PagesController < ApplicationController
   def home
-    @products = Product.where(query_params[:filter])
     @categories_select_params = Category.select_params
+    @brands_select_params = Brand.select_params
+    @products = Product.filtered(filter_params)
   end
-end
 
-private
+  private
 
-def query_params
-  params.permit(filter: [:category_id])
+  def filter_params
+    params.require(:filter).permit(:category_id, :brand_id) if params[:commit]
+  end
 end
