@@ -23,4 +23,13 @@ RSpec.describe 'Authentications', type: :system do
     click_on 'Log in'
     expect(page).to have_content 'Signed in successfully.'
   end
+
+  it 'allows to reset password' do
+    visit new_user_session_path
+    click_on 'Forgot your password?'
+    fill_in 'Email', with: existing_user.email
+    click_on 'Send me reset password instructions'
+
+    expect(page).to have_content 'You will receive an email with instructions on how to reset your password'
+  end
 end
