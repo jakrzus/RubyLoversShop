@@ -19,8 +19,7 @@ RSpec.describe 'Authentications', type: :system do
 
   it 'allows to sign in' do
     visit new_user_session_path
-    fill_in 'Email', with: existing_user.email
-    fill_in 'Password', with: existing_user.password
+    fill_in_sign_in_form_as existing_user
     click_on 'Log in'
     expect(page).to have_content 'Signed in successfully.'
   end
