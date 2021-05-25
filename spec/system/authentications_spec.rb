@@ -1,14 +1,13 @@
 # frozen_string_literal: true
 
 require 'rails_helper'
-require File.expand_path('./spec/support/helpers.rb')
-
+require './spec/support/helpers'
 RSpec.describe 'Authentications', type: :system do
   before do
     driven_by(:rack_test)
   end
 
-  let(:user) { attributes_for :user }
+  let(:user) { build_stubbed :user }
 
   it 'allows to sign up' do
     visit new_user_registration_path
