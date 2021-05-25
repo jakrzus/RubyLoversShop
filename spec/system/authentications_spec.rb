@@ -11,7 +11,7 @@ RSpec.describe 'Authentications', type: :system do
 
   it 'allows to sign up' do
     visit new_user_registration_path
-    fill_in_sign_up_form user
+    fill_in_sign_up_form_as user
     click_on 'Sign up'
     expect(page).to have_content 'Welcome! You have signed up successfully.'
   end
