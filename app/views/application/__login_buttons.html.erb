@@ -17,7 +17,10 @@
     </div>
   <% else %>
     <li class="nav-item active">
-      <%= link_to "Sign In", new_user_session_path, class:"nav-link btn btn-outline-secondary btn-inverse"%>
+      <%= link_to "Sign In", new_user_session_path, class:"nav-link btn btn-outline-primary btn-inverse ml-1"%>
+    </li>
+    <li class="nav-item active">
+      <%= link_to "Sign Up", new_user_registration_path, class:"nav-link btn btn-outline-secondary btn-inverse ml-1"%>
     </li>
   <% end %>
 </ul>
