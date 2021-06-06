@@ -11,6 +11,10 @@ module Helpers
     fill_in 'Password confirmation', with: user.password
   end
 
+  def log_in(user)
+    post new_user_session_path, params: { user: { email: user.email, password: user.password } }
+  end
+
   RSpec.configure do |config|
     config.include Helpers
   end
