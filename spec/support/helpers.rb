@@ -12,7 +12,13 @@ module Helpers
   end
 
   def log_in(user)
-    post new_user_session_path, params: { user: { email: user.email, password: user.password } }
+    post user_session_path, params: { user: { email: user.email, password: user.password } }
+    follow_redirect!
+  end
+
+  def log_in_admin(admin)
+    post admin_user_session_path, params: { admin_user: { email: admin.email, password: admin.password } }
+    follow_redirect!
   end
 
   RSpec.configure do |config|
