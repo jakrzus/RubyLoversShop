@@ -2,6 +2,8 @@
 
 module Admin
   class PagesController < AdminController
-    def dashboard; end
+    def dashboard
+      render :dashboard, locals: { products: Product.all }
+    end
   end
 end
