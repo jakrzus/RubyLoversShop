@@ -1,0 +1,15 @@
+<%= form_for  :filter, url: root_path, method: :get, local: false do |f|%>
+  <div class="row">
+    <div class="col">
+      <%= f.label :category_id, "Category" %>
+      <%= f.select :category_id, CategoryPresenter.select_params, class: "form-control", include_blank: true%>
+    </div>
+    <div class="col">
+      <%= f.label :brand_id, "Brand" %>
+      <%= f.select :brand_id, BrandPresenter.select_params, class: "form-control", include_blank: true%>
+    </div>
+    <div class="col">
+      <%= f.submit class: "btn btn-primary"%>
+    </div>
+  </div>
+<% end %>
