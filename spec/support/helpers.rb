@@ -21,6 +21,13 @@ module Helpers
     follow_redirect!
   end
 
+  def fill_in_product_form(product)
+    fill_in 'Name',	with: product.name
+    fill_in 'Price',	with: product.price
+    select product.category.name, from: 'product_category_id'
+    select product.brand.name, from: 'product_brand_id'
+  end
+
   RSpec.configure do |config|
     config.include Helpers
   end
