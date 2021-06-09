@@ -2,7 +2,7 @@
 
 FactoryBot.define do
   factory :product do
-    name { Faker::Vehicle.model }
+    sequence(:name) { |n| "Product#{n}" }
     price { '999.99' }
     category { Category.any? ? Category.all.sample : create(:category) }
     brand { Brand.any? ? Brand.all.sample : create(:brand) }

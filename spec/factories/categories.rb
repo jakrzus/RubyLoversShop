@@ -2,6 +2,6 @@
 
 FactoryBot.define do
   factory :category do
-    name { Faker::Vehicle.unique.car_type }
+    sequence(:name) { |n| "Category#{n}" }
   end
 end
