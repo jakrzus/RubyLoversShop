@@ -14,5 +14,10 @@
       <h5><%= number_to_currency(product.price) %></h5>
       <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet numquam aspernatur!</p>
     </div>
+    <% if current_admin_user %>
+      <div class="card-footer">
+        <%= button_to "Delete", admin_product_path(product), method: :delete, class: "btn btn-danger"%>
+      </div>
+    <% end %>
   </div>
 </div>
