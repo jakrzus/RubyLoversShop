@@ -12,5 +12,8 @@ FactoryBot.define do
         product.photos.attach(io: file, filename: 'watch.webp', content_type: 'image/webp')
       end
     end
+    trait :without_name do
+      name { '' }
+    end
   end
 end
