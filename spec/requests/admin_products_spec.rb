@@ -15,9 +15,7 @@ RSpec.describe 'AdminProducts', type: :request do
 
   describe '::POST /admin/products/new' do
     it 'creates new products' do
-      post admin_products_path,
-           params: { product: { name: product.name, price: product.price, brand_id: product.brand_id,
-                                category_id: product.category_id } }
+      post admin_products_path, params: { product: product.as_json }
       follow_redirect!
 
       expect(response.body).to include('Product was successfully created')
