@@ -16,6 +16,8 @@
     <%= f.label :category_id %><br/>
     <%= f.select :category_id, CategoryPresenter.select_params, class: "form-control" , include_blank: true%>
   </div>
+  <%=  f.label :photos %><br />
+  <%= f.file_field :photos, multiple: true %>
   <%= f.submit "Submit" , class: "btn btn-primary" %>
   <% end %>
 </div>

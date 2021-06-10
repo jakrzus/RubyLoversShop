@@ -8,10 +8,7 @@ RSpec.describe 'AdminProducts', type: :system do
     driven_by(:rack_test)
     create :brand
     create :category
-    admin = create :admin_user
-    visit admin_root_path
-    fill_in_sign_in_form_as admin
-    click_on 'Log in'
+    login_admin
     visit new_admin_product_path
   end
 
@@ -29,4 +26,18 @@ RSpec.describe 'AdminProducts', type: :system do
     click_button 'Submit'
     expect(page).to have_content('Product was not created')
   end
+
+  it 'allows admin to attach a photo to product' do
+    fill_in_product_form product
+    attach_file 'product_photos', 'spec/support/watch.webp'
+    click_button 'Submit'
+    expect(page).to have_css("img[src*='watch.webp']")
+  end
+end
+
+def login_admin
+  admin = create :admin_user
+  visit admin_root_path
+  fill_in_sign_in_form_as admin
+  click_on 'Log in'
 end
