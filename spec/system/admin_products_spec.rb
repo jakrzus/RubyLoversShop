@@ -34,10 +34,3 @@ RSpec.describe 'AdminProducts', type: :system do
     expect(page).to have_css("img[src*='watch.webp']")
   end
 end
-
-def login_admin
-  admin = create :admin_user
-  visit admin_root_path
-  fill_in_sign_in_form_as admin
-  click_on 'Log in'
-end
