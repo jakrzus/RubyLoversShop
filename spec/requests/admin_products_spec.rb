@@ -13,7 +13,7 @@ RSpec.describe 'AdminProducts', type: :request do
 
   let!(:product) { build_stubbed(:product) }
 
-  describe '::POST /admin/products/new' do
+  describe 'POST /admin/products/new' do
     it 'creates new products' do
       post admin_products_path, params: { product: product.as_json }
       follow_redirect!
