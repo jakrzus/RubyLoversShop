@@ -12,7 +12,7 @@ RSpec.describe 'AdminProducts', type: :request do
   end
 
   let!(:new_product) { build_stubbed :product }
-  let(:existing_product) { create :product }
+  let!(:existing_product) { create :product }
 
   describe 'POST /admin/products/new' do
     it 'creates new products' do
