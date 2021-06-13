@@ -24,7 +24,7 @@ RSpec.describe 'AdminProducts', type: :system do
   it 'prevent from saving product with no name' do
     fill_in_product_form product_without_name
     click_button 'Submit'
-    expect(page).to have_content('Product was not created')
+    expect(page).to have_content("Can't be blank")
   end
 
   it 'allows admin to attach a photo to product' do
