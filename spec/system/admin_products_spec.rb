@@ -4,16 +4,16 @@ require 'rails_helper'
 require './spec/support/helpers'
 
 RSpec.describe 'AdminProducts', type: :system do
+  let!(:category) { create :category } # rubocop:disable  RSpec/LetSetup
+  let!(:brand) {  create :brand } # rubocop:disable  RSpec/LetSetup
+  let!(:product) { build_stubbed :product }
+  let!(:product_without_name) { build_stubbed :product, :without_name }
+
   before do
     driven_by(:rack_test)
-    create :brand
-    create :category
     login_admin
     visit new_admin_product_path
   end
-
-  let!(:product) { build_stubbed :product }
-  let!(:product_without_name) { build_stubbed :product, :without_name }
 
   it 'allows admin to add new products' do
     fill_in_product_form product
