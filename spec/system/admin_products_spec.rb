@@ -4,16 +4,16 @@ require 'rails_helper'
 require './spec/support/helpers'
 
 RSpec.describe 'AdminProducts', type: :system do
+  let!(:category) { create :category } # rubocop:disable  RSpec/LetSetup
+  let!(:brand) {  create :brand } # rubocop:disable  RSpec/LetSetup
+  let!(:product) { build_stubbed :product }
+  let!(:product_without_name) { build_stubbed :product, :without_name }
+
   before do
     driven_by(:rack_test)
-    create :brand
-    create :category
     login_admin
     visit new_admin_product_path
   end
-
-  let!(:product) { build_stubbed :product }
-  let!(:product_without_name) { build_stubbed :product, :without_name }
 
   it 'allows admin to add new products' do
     fill_in_product_form product
@@ -24,7 +24,7 @@ RSpec.describe 'AdminProducts', type: :system do
   it 'prevent from saving product with no name' do
     fill_in_product_form product_without_name
     click_button 'Submit'
-    expect(page).to have_content('Product was not created')
+    expect(page).to have_content("Can't be blank")
   end
 
   it 'allows admin to attach a photo to product' do

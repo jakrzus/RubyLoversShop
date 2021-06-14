@@ -3,7 +3,8 @@
 module Admin
   class ProductsController < AdminController
     def new
-      render :new, locals: { product: Product.new }
+      product = Product.new
+      render :new, locals: { product: product, product_presenter: ProductPresenter.new(product) }
     end
 
     def create
@@ -11,8 +12,7 @@ module Admin
       if product.save
         redirect_to root_path, notice: 'Product was successfully created'
       else
-        flash.now[:alert] = 'Product was not created'
-        render :new, locals: { product: Product.new(product_params) }
+        render :new, locals: { product: product, product_presenter: ProductPresenter.new(product) }
       end
     end
 
