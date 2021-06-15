@@ -28,6 +28,12 @@ module Helpers
     select product.brand.name, from: 'product_brand_id'
   end
 
+  def login_admin(admin)
+    visit admin_root_path
+    fill_in_sign_in_form_as admin
+    click_on 'Log in'
+  end
+
   RSpec.configure do |config|
     config.include Helpers
   end

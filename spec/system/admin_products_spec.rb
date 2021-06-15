@@ -3,15 +3,16 @@
 require 'rails_helper'
 require './spec/support/helpers'
 
-RSpec.describe 'AdminProducts', type: :system do
+RSpec.describe 'AdminAddingProducts', type: :system do
   let!(:category) { create :category } # rubocop:disable  RSpec/LetSetup
-  let!(:brand) {  create :brand } # rubocop:disable  RSpec/LetSetup
+  let!(:brand) { create :brand } # rubocop:disable  RSpec/LetSetup
   let!(:product) { build_stubbed :product }
   let!(:product_without_name) { build_stubbed :product, :without_name }
+  let(:admin) { create :admin_user }
 
   before do
     driven_by(:rack_test)
-    login_admin
+    login_admin admin
     visit new_admin_product_path
   end
 
@@ -33,11 +34,4 @@ RSpec.describe 'AdminProducts', type: :system do
     click_button 'Submit'
     expect(page).to have_css("img[src*='watch.webp']")
   end
-end
-
-def login_admin
-  admin = create :admin_user
-  visit admin_root_path
-  fill_in_sign_in_form_as admin
-  click_on 'Log in'
 end
