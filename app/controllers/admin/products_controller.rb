@@ -25,15 +25,6 @@ module Admin
       end
     end
 
-    def destroy
-      product = Product.find(params[:id])
-      if product.destroy
-        redirect_to admin_root_path, notice: 'Product was successfully deleted'
-      else
-        redirect_back fallback_location: admin_root_path, alert: 'Could not delete product'
-      end
-    end
-
     private
 
     def product_params
