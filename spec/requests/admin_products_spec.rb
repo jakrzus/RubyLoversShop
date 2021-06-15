@@ -4,15 +4,15 @@ require 'rails_helper'
 require './spec/support/helpers'
 
 RSpec.describe 'AdminProducts', type: :request do
-  before do
-    create :category
-    create :brand
-    admin = create :admin_user
-    log_in_admin admin
-  end
-
+  let!(:category) { create :category }
+  let!(:brand) { create :brand }
   let!(:new_product) { build_stubbed :product }
   let!(:existing_product) { create :product }
+  let!(:admin) { create :admin_user }
+
+  before do
+    log_in_admin admin
+  end
 
   describe 'POST /admin/products/new' do
     it 'creates new products' do
