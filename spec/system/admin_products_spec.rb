@@ -8,10 +8,11 @@ RSpec.describe 'AdminAddingProducts', type: :system do
   let!(:brand) { create :brand } # rubocop:disable  RSpec/LetSetup
   let!(:product) { build_stubbed :product }
   let!(:product_without_name) { build_stubbed :product, :without_name }
+  let(:admin) { create :admin_user }
 
   before do
     driven_by(:rack_test)
-    login_admin
+    login_admin admin
     visit new_admin_product_path
   end
 
