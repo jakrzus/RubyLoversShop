@@ -25,6 +25,20 @@ module Admin
       end
     end
 
+    def edit
+      product = Product.find(params[:id])
+      render :edit, locals: { product: product, product_presenter: ProductPresenter.new(product) }
+    end
+
+    def update
+      product = Product.find(params[:id])
+      if product.update(product_params)
+        redirect_to admin_root_path, notice: 'Product was successfully updated.'
+      else
+        render :edit, locals: { product: product, product_presenter: ProductPresenter.new(product) }
+      end
+    end
+
     private
 
     def product_params
