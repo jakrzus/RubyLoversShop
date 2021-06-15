@@ -14,7 +14,7 @@ RSpec.describe 'AdminDeletingProducts', type: :system do
   it 'allows admin to delete a product' do
     visit admin_root_path
     click_button 'Delete'
-
+expect(page).to have_content('Product was successfully deleted')
     expect(page).to have_no_content(product.name)
   end
 end
