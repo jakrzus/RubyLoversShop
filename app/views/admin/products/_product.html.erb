@@ -15,7 +15,10 @@
       <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet numquam aspernatur!</p>
     </div>
     <div class="card-footer">
-      <%= button_to "Delete", admin_product_path(product), method: :delete, class: "btn btn-danger"%>
+      <div class="row">
+        <%= button_to "Delete", admin_product_path(product), method: :delete, class: "btn btn-danger mx-1"%>
+        <%= link_to "Edit", edit_admin_product_path(product), class: "btn btn-primary mx-1"%>
+      </div>
     </div>
   </div>
 </div>
