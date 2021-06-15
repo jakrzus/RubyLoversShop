@@ -4,8 +4,8 @@ require 'rails_helper'
 require './spec/support/helpers'
 
 RSpec.describe 'AdminAddingProducts', type: :system do
-  let!(:category) { create :category } # rubocop:disable  RSpec/LetSetup
-  let!(:brand) { create :brand } # rubocop:disable  RSpec/LetSetup
+  let!(:category) { create :category }
+  let!(:brand) { create :brand }
   let!(:product) { build_stubbed :product }
   let!(:product_without_name) { build_stubbed :product, :without_name }
   let(:admin) { create :admin_user }
