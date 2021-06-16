@@ -1,15 +1,17 @@
-<%= form_for  :filter, url: root_path, method: :get, local: false do |f|%>
-  <div class="row">
-    <div class="col">
-      <%= f.label :category_id, "Category" %>
-      <%= f.select :category_id, CategoryPresenter.select_params, class: "form-control", include_blank: true%>
+<div class="col mb-3">
+  <%= form_for  :filter, url: root_path, method: :get, local: false do |f|%>
+    <div class="form-row">
+      <div class="col form-group">
+        <%= f.label :category_id, "Category" %>
+        <%= f.select :category_id, CategoryPresenter.select_params, class: "form-control", prompt: true %>
+      </div>
+      <div class="col form-group">
+        <%= f.label :brand_id, "Brand" %>
+        <%= f.select :brand_id, BrandPresenter.select_params, class: "form-control", prompt: true %>
+      </div>
+      <div class="col form-group">
+        <%= f.submit class: "btn btn-primary" %>
+      </div>
     </div>
-    <div class="col">
-      <%= f.label :brand_id, "Brand" %>
-      <%= f.select :brand_id, BrandPresenter.select_params, class: "form-control", include_blank: true%>
-    </div>
-    <div class="col">
-      <%= f.submit class: "btn btn-primary"%>
-    </div>
-  </div>
-<% end %>
+  <% end %>
+</div>
