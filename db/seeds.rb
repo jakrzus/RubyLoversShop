@@ -1,4 +1,4 @@
-require 'open-uri'
+require 'uri'
 User.create(email: 'email@example', password: 'password')
 AdminUser.create(email: 'admin@example', password: 'password')
 3.times do 
@@ -8,8 +8,8 @@ AdminUser.create(email: 'admin@example', password: 'password')
   Category.where(name: category.name).first_or_create(category.as_json)
   Brand.where(name: brand.name).first_or_create(brand.as_json)
 end
-10.times do
-  file = open(Faker::Avatar.image)
+15.times do
+  file = URI.open(Faker::Avatar.image)
   product = Product.new(name: Faker::Vehicle.unique.model,
                         price: rand(1000.01..99999.99).round(2),
                         brand: Brand.all.sample,
