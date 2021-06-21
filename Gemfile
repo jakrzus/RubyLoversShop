@@ -12,6 +12,7 @@ gem 'sass-rails', '>= 6'
 gem 'webpacker', '~> 4.0'
 gem 'bootsnap', '>= 1.4.2', require: false
 gem 'devise'
+gem 'aws-sdk-s3', require: false
 group :development, :test do
   gem 'faker'
   gem 'pry-rails'
