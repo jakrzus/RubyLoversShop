@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'cart', to: 'carts#show'
   devise_for :admin_users
   devise_for :users
   namespace 'admin' do
