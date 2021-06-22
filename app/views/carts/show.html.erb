@@ -1,0 +1,13 @@
+<div class="card">
+  <h4 class="card-header text-center">Your Cart</h4>
+  <% items.each do |item| %>
+    <ul class= "list-group list-group-flush">
+      <li class="list-group-item">
+        <h4>
+          <%= item.product.name %>
+        </h4>
+        <%= number_to_currency item.product.price %>
+      </li>
+    </ul>
+  <% end %>
+</div>
