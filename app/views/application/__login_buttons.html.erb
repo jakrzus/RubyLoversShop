@@ -7,7 +7,7 @@
           <%= current_user.email %>
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-          <a class="dropdown-item" href="#"><i class="bi bi-cart"></i> Action</a>
+          <a class="dropdown-item" href="<%= cart_path %>"><i class="bi bi-cart"></i> Shopping Cart</a>
           <a class="dropdown-item" href="#"><i class="bi bi-gear"></i> Another action</a>
           <div class="divider dropdown-divider"></div>
           <a class="dropdown-item" href="<%= destroy_user_session_path %>" data-method="delete">
