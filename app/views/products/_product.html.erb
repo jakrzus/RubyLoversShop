@@ -14,5 +14,10 @@
       <h5><%= number_to_currency(product.price) %></h5>
       <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet numquam aspernatur!</p>
     </div>
+    <div class="card-footer">
+      <div class="row">
+        <%= button_to "Add to cart", add_product_path(product), class: "btn btn-primary mx-1" %>
+      </div>
+    </div>
   </div>
 </div>
