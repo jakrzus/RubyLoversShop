@@ -9,6 +9,8 @@ Rails.application.routes.draw do
     resources :products, only: [:new, :create, :destroy, :edit, :update]
   end
   
+  resources :products, only: [:show]
+  
   get 'cart', to: 'carts#show'
   post 'add_product/:id', to: 'carts#add_product', as: 'add_product'
 end
