@@ -13,4 +13,5 @@ Rails.application.routes.draw do
   
   get 'cart', to: 'carts#show'
   post 'add_product/:id', to: 'carts#add_product', as: 'add_product'
+  delete 'delete_products', to: 'carts#delete_products'
 end
