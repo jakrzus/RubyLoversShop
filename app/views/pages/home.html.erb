@@ -1,4 +1,4 @@
 <%= render 'application/products_filter' %>
 <div class="row">
-  <%= render  @products %>
+  <%= render  partial: 'products/product_card', collection: products, as: :product %>
 </div>
