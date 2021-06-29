@@ -1,14 +1,14 @@
 # frozen_string_literal: true
 
 class CartsController < ApplicationController
-  before_action :authenticate_user!, :set_cart
+  before_action :authenticate_user!
   def show
-    render :show, locals: { items: @cart.cart_items }
+    render :show, locals: { items: cart.cart_items }
   end
 
   def add_product
     product = Product.find params[:id]
-    add_product = CartServices::AddProduct.new.call @cart, product
+    add_product = CartServices::AddProduct.new.call cart, product
     if add_product.success?
       redirect_to root_path, notice: 'Product added successfully'
     else
@@ -18,7 +18,7 @@ class CartsController < ApplicationController
 
   private
 
-  def set_cart
-    @cart = current_user.cart
+  def cart
+    @cart ||= current_user.cart
   end
 end
