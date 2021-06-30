@@ -31,4 +31,17 @@ RSpec.describe 'Carts', type: :request do
       expect(response.body).to include product.name
     end
   end
+
+  describe 'DELETE /delete_products' do
+    before do
+      log_in user
+    end
+
+    it 'deletes all products from the cart' do
+      post "/add_product/#{product.id}"
+      delete '/delete_products'
+
+      expect(user.cart.cart_items.count).to eq 0
+    end
+  end
 end

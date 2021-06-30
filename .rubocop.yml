@@ -31,6 +31,7 @@ RSpec/MultipleExpectations:
 Metrics/BlockLength:
   Exclude:
    - spec/system/**
+   - spec/requests/carts_request_spec.rb
 RSpec/ExampleLength:
   Exclude:
     - spec/system/**
