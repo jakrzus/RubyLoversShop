@@ -16,12 +16,6 @@ class CartsController < ApplicationController
     end
   end
 
-  private
-
-  def cart
-    @cart ||= current_user.cart
-  end
-
   def delete_products
     items = current_user.cart.cart_items
     if items.destroy_all
@@ -29,5 +23,11 @@ class CartsController < ApplicationController
     else
       render :show, locals: { items: current_user.cart.cart_items }, allert: 'Ups! Something went wrong'
     end
+  end
+
+  private
+
+  def cart
+    @cart ||= current_user.cart
   end
 end
