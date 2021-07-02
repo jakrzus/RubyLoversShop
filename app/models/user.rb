@@ -7,4 +7,5 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
   has_one :cart, dependent: :destroy
   before_create :build_cart
+  has_many :orders, dependent: :restrict_with_exception
 end
