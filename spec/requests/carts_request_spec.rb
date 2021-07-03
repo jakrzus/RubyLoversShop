@@ -32,6 +32,20 @@ RSpec.describe 'Carts', type: :request do
     end
   end
 
+  describe 'POST /cart' do
+    before do
+      log_in user
+    end
+
+    it 'checks out the order' do
+      post "/add_product/#{product.id}"
+      post '/cart'
+      order_items = user.orders.first.cart_items.map(&:product)
+
+      expect(order_items).to include product
+    end
+  end
+
   describe 'DELETE /cart' do
     before do
       log_in user
