@@ -6,7 +6,6 @@ require './spec/support/helpers'
 RSpec.describe 'ShoppingCarts', type: :system do
   let!(:user) { create :user }
   let!(:product) { create :product }
-  let(:cart) { create :cart }
 
   before do
     driven_by(:rack_test)
