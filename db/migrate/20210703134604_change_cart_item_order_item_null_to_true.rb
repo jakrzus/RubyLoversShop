@@ -1,5 +1,8 @@
 class ChangeCartItemOrderItemNullToTrue < ActiveRecord::Migration[6.1]
-  def change
-    change_column :cart_items, :cart_id, :integer, null: true
+  def up
+    change_column :cart_items, :cart_id, :bigint, null: true
+  end
+  def down
+    change_column :cart_items, :cart_id, :bigint, null: false
   end
 end
