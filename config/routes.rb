@@ -15,4 +15,6 @@ Rails.application.routes.draw do
   post 'cart', to: 'carts#checkout'
   delete 'cart', to: 'carts#destroy'
   post 'add_product/:id', to: 'carts#add_product', as: 'add_product'
+
+  resources :check_outs, only: [:new]
 end
