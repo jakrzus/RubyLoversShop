@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   resources :products, only: [:show]
   
   get 'cart', to: 'carts#show'
-  post 'add_product/:id', to: 'carts#add_product', as: 'add_product'
+  post 'cart', to: 'carts#checkout'
   delete 'cart', to: 'carts#destroy'
+  post 'add_product/:id', to: 'carts#add_product', as: 'add_product'
 end

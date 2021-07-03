@@ -25,6 +25,16 @@ class CartsController < ApplicationController
     end
   end
 
+  def checkout
+    order = current_user.orders.build
+    response = CartServices::CheckOut.new.call cart, order
+    if response.success?
+      redirect_to root_path, notice: 'Order has been created'
+    else
+      redirect_back fallback_location: root_path, alert: response.payload.errors.full_messages
+    end
+  end
+
   private
 
   def cart
