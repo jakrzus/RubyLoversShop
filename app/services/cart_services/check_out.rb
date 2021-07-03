@@ -6,9 +6,9 @@ module CartServices
       order.cart_items = cart.cart_items
       if order.save
         remove_items_from_cart order
-        OpenStruct.new(succes?: true, payload: order)
+        OpenStruct.new(success?: true, payload: order)
       else
-        OpenStruct.new(succes?: false, payload: order)
+        OpenStruct.new(success?: false, payload: order)
       end
     end
 
