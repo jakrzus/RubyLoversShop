@@ -11,6 +11,7 @@
     </ul>
   <% end %>
   <div class = "card-footer">
+    <%= link_to "Check Out", cart_path, method: :post, class: 'btn btn-primary' %>
     <%= button_to "Empty Cart", cart_path, method: :delete, class: "btn btn-danger" %>
   </div>
 </div>
