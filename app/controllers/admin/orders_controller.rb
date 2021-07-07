@@ -3,7 +3,7 @@
 module  Admin
   class OrdersController < AdminController
     def index
-      orders = Order.order created_at: :desc
+      @pagy, orders = pagy(Order.order(created_at: :desc))
       render :index, locals: { orders: orders }
     end
   end
