@@ -1,16 +1,25 @@
 <div class="card">
   <h4 class="card-header text-center">Your Cart</h4>
-  <% items.each do |item| %>
+  <div class="card-body">
     <ul class= "list-group list-group-flush">
-      <li class="list-group-item">
-        <h4>
-          <%= item.product.name %>
-        </h4>
-        <%= number_to_currency item.product.price %>
-      </li>
+      <% items.each do |item| %>
+        <li class="list-group-item">
+          <h4>
+            <%= item.product.name %>
+          </h4>
+          <%= number_to_currency item.product.price %>
+        </li>
+      <% end %>
     </ul>
-  <% end %>
+  </div>
   <div class = "card-footer">
-    <%= button_to "Empty Cart", cart_path, method: :delete, class: "btn btn-danger" %>
+    <div class= "row">
+      <div class= "col-6">
+        <%= link_to "Check Out", cart_path, method: :post, class: 'btn btn-primary mx-1' %>
+      </div>
+      <div class = "col-6">
+        <%= button_to "Empty Cart", cart_path, method: :delete, class: "btn btn-danger mx1 float-right" %>
+      </div>
+    </div>
   </div>
 </div>

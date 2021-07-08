@@ -28,6 +28,7 @@ Style/GuardClause:
 RSpec/MultipleExpectations:
   Exclude:
     - spec/system/**
+    - spec/requests/carts_request_spec.rb
 Metrics/BlockLength:
   Exclude:
    - spec/system/**
@@ -35,5 +36,6 @@ Metrics/BlockLength:
 RSpec/ExampleLength:
   Exclude:
     - spec/system/**
+    - spec/requests/carts_request_spec.rb
 RSpec/LetSetup:
   Enabled: false

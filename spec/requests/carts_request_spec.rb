@@ -32,6 +32,30 @@ RSpec.describe 'Carts', type: :request do
     end
   end
 
+  describe 'POST /cart' do
+    before do
+      log_in user
+    end
+
+    it 'checks out the order' do
+      post "/add_product/#{product.id}"
+      post '/cart'
+      order_items = user.orders.first.cart_items.map(&:product)
+
+      expect(order_items).to include product
+    end
+
+    it 'does not allow for new check out if there is one unfinished' do
+      2.times do
+        post "/add_product/#{product.id}"
+        post '/cart'
+      end
+      follow_redirect!
+      expect(response.body).to include 'You must finish check out'
+      expect(user.orders.count).to eq 1
+    end
+  end
+
   describe 'DELETE /cart' do
     before do
       log_in user
