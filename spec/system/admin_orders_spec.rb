@@ -14,7 +14,9 @@ RSpec.describe 'AdminOrders', type: :system do
   end
 
   it 'allows admin to see older products by selecting different paginated pages' do
-    visit admin_orders_path
+    visit admin_root_path
+    find('nav.navbar').click_on 'Orders'
+    expect(find('div.page-header')).to have_content 'Table of Orders'
     expect(find('#orders-table')).to have_no_content order.id
     find('nav.pagy-bootstrap-nav').click_on 'Next'
     expect(find('#orders-table')).to have_content order.id
