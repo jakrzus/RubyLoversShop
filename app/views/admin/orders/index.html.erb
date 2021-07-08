@@ -1,4 +1,4 @@
-<table class="table">
+<table class="table" id="orders-table">
   <thead class="thead-dark">
     <tr>
       <th scope="col" >#</th>
@@ -18,7 +18,7 @@
           <%= order.user.email %>
         </td>
         <td>
-          10 000$
+          <%= number_to_currency(OrderPresenter.new(order).total) %>
         </td>
         <td>
           <%= order.state %>
