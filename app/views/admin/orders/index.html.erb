@@ -1,5 +1,29 @@
-<% orders.each do |order| %>
-  <%= order.id %>
-  <%= order.user.email %>
-<% end %>
+<table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col" >#</th>
+      <th scope="col" >User</th>
+      <th scope="col" >Total</th>
+      <th scope="col" >Status</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% orders.each do |order| %>
+      <tr>
+        <th scope="row">
+          <%= order.id %>
+        </th>
+        <td>
+          <%= order.user.email %>
+        </td>
+        <td>
+          10 000$
+        </td>
+        <td>
+          <%= order.state %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
 <%== pagy_bootstrap_nav(@pagy) %>
