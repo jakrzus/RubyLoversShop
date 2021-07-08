@@ -26,28 +26,21 @@ class CartsController < ApplicationController
   end
 
   def checkout
-    create_new_order unless unfinished_checkout?
+    response = CartServices::CheckOut.new.call current_user
+    case response.status
+    when :unfinished
+      redirect_to new_check_out_path, alert: 'You must finish check out'
+    when :created
+      redirect_to new_check_out_path, notice: 'Order has been created'
+    else
+      redirect_back fallback_location: root_path, alert: 'Could not create new order'
+      logger.debug response.error
+    end
   end
 
   private
 
   def cart
     @cart ||= current_user.cart
-  end
-
-  def unfinished_checkout?
-    if current_user.orders.find_by(state: :new).present?
-      redirect_to new_check_out_path, alert: 'You must finish check out'
-    end
-  end
-
-  def create_new_order
-    order = current_user.orders.build
-    response = CartServices::CheckOut.new.call cart, order
-    if response.success?
-      redirect_to new_check_out_path, notice: 'Order has been created'
-    else
-      redirect_back fallback_location: root_path, alert: response.payload.errors.full_messages
-    end
   end
 end
