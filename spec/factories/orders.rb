@@ -11,7 +11,7 @@ FactoryBot.define do
     end
 
     trait :big_id do
-      sequence :id, 99_999
+      sequence :id, 9_999_999
     end
   end
 end
