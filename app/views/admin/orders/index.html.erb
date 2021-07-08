@@ -5,11 +5,12 @@
       <th scope="col" >User</th>
       <th scope="col" >Total</th>
       <th scope="col" >Status</th>
+      <th scope="col" >Created</th>
     </tr>
   </thead>
   <tbody>
     <% orders.each do |order| %>
-      <tr>
+      <tr class="<%= bootstrap_order_table_class(order.state) %>">
         <th scope="row">
           <%= order.id %>
         </th>
@@ -21,6 +22,9 @@
         </td>
         <td>
           <%= order.state %>
+        </td>
+        <td>
+          <%= order.created_at.strftime("%F %R") %>
         </td>
       </tr>
     <% end %>

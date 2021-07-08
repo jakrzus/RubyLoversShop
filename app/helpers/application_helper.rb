@@ -17,4 +17,15 @@ module ApplicationHelper
       flash_type.to_s
     end
   end
+
+  def bootstrap_order_table_class(type)
+    case type
+    when 'new'
+      'table-primary'
+    when 'failed'
+      'table-danger'
+    else
+      ''
+    end
+  end
 end
