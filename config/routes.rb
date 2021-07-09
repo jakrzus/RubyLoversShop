@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   namespace 'admin' do
     root to: 'pages#dashboard'
     resources :products, only: [:new, :create, :destroy, :edit, :update]
-    resources :orders, only: [:index]
+    resources :orders, only: [:index, :show]
   end
   
   resources :products, only: [:show]
