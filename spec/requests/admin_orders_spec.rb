@@ -22,4 +22,19 @@ RSpec.describe 'AdminOrders', type: :request do
       expect(response.body).not_to include order1.id.to_s
     end
   end
+
+  describe 'GET  /admin/order/:id' do
+    let!(:order) { create :order, :big_id }
+
+    before do
+      sign_in admin
+    end
+
+    it 'displays the order details' do
+      get "/admin/orders/#{order.id}"
+
+      expect(response.body).to include 'Order Details'
+      expect(response.body).to include order.id.to_s
+    end
+  end
 end
