@@ -1,0 +1,35 @@
+<table class="table table-borderless table-sm">
+  <thead>
+    <tr>
+      <th scope="col">Order Details</th>
+      <th scope="col">Payment Address</th>
+      <th scope="col">Shipping Address</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        Id: <%= order.id %> <br>
+        Created: <%= order.created_at.strftime("%F %R") %><br>
+        User:  <%= order.user.email %><br>
+        Status: <%= order.state %>
+      </td>
+      <td>
+        <address>
+          Mozilla Foundation<br>
+          331 E Evelyn Ave<br>
+          Mountain View, CA 94041<br>
+          USA
+        </address>
+      </td>
+      <td>
+        <address>
+          Mozilla Foundation<br>
+          331 E Evelyn Ave<br>
+          Mountain View, CA 94041<br>
+          USA
+        </address>
+      </td>
+    </tr>
+  </tbody>
+</table>
