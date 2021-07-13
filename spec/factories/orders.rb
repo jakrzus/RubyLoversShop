@@ -5,7 +5,8 @@ FactoryBot.define do
     user { User.all.sample || FactoryBot.create(:user) }
     state { Order::STATES.sample }
     before(:create) do |order|
-      order.cart_items = FactoryBot.build_list(:cart_item, 5)
+      create_list :product, 5
+      order.cart_items = build_list(:cart_item, 5)
     end
 
     trait :big_id do
