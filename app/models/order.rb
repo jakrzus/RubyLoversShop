@@ -1,7 +1,10 @@
 # frozen_string_literal: true
 
 class Order < ApplicationRecord
+  STATES = %w[new failed completed].freeze
+
   belongs_to :user
   has_many :cart_items, dependent: :destroy
-  enum state: { new: 0, failed: 1, completed: 2 }, _prefix: true, _default: :new
+  has_many :products, through: :cart_items
+  enum state: STATES, _prefix: true, _default: :new
 end
