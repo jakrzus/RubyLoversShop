@@ -2,7 +2,7 @@
 
 class PagesController < ApplicationController
   def home
-    products = Product.filtered(filter_params)
+    products = Product.filtered(filter_params).includes(%i[brand category photos_attachments])
     render :home, locals: { products: products }
   end
 
