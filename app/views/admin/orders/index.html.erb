@@ -27,7 +27,7 @@
           <%= order.state %>
         </td>
         <td>
-          <%= order.created_at.strftime("%F %R") %>
+          <%= OrderPresenter.new(order).created_at %>
         </td>
       </tr>
     <% end %>

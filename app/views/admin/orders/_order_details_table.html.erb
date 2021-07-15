@@ -10,7 +10,7 @@
     <tr>
       <td>
         Id: <%= order.id %> <br>
-        Created: <%= order.created_at.strftime("%F %R") %><br>
+        Created: <%= order_presenter.created_at %><br>
         User:  <%= order.user.email %><br>
         Status: <%= order.state %>
       </td>
