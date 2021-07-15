@@ -37,4 +37,12 @@ RSpec.describe 'AdminOrders', type: :request do
       expect(response.body).to include order.id.to_s
     end
   end
+
+  describe 'POST /admin/orders/set_payment' do
+    let(:order) { create :order }
+
+    it 'change order status to completed only once' do
+      post '/admin/set_payment', params: { payment_id: order.payment.id.to_s, event: :complete }
+    end
+  end
 end

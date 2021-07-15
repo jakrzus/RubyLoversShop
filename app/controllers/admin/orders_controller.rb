@@ -12,5 +12,13 @@ module  Admin
       products = order.products.includes(%i[brand category])
       render :show, locals: { order: order, products: products, order_presenter: OrderPresenter.new(order) }
     end
+
+    def set_payment
+      payment = Payment.find(params[:payment_id])
+      event = params[:event]
+      result = OrderServices::SetPaymentStatus.new.call payment, event
+      flash.now[result.flash[:type]] = result.flash[:message]
+      render :show, locals: { order: payment.order, order_presenter: OrderPresenter.new(payment.order) }
+    end
   end
 end
