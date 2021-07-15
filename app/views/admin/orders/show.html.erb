@@ -1,0 +1,15 @@
+<div class= "card">
+  <div class="card-header text-center">
+    <h3 class="card-title">Order Details</h3>
+  </div>
+  <div class="card-body">
+    <div class="row">
+      <div class="col">
+        <%= render partial: 'admin/orders/order_details_table', locals: {order: order, order_presenter: order_presenter} %>
+      </div>
+    </div>
+    <div class="row">
+      <%= render partial: 'admin/orders/order_products_table', locals: {products: order.products, order_presenter: order_presenter} %>
+    </div>
+  </div>
+</div>

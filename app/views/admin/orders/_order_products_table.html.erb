@@ -1,0 +1,38 @@
+<table id="proucts-table" class="table table-sm">
+  <thead>
+    <tr>
+      <th scope="col" >Product</th>
+      <th scope="col" >Brand</th>
+      <th scope="col" >Category</th>
+      <th scope="col" >Price</th>
+    </tr>
+  </thead>
+  <tbody scope="col">
+    <% products.each do |product| %>
+      <tr scope="row">
+        <td>
+          <%= product.name %>
+        </td>
+        <td>
+          <%= product.brand.name %>
+        </td>
+        <td>
+          <%= product.category.name %>
+        </td>
+        <td>
+          <%= number_to_currency(product.price) %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+  <tfoot class="h3 border-bottom table-border-primary">
+    <tr scope="row">
+      <th>
+        Total: 
+      </th>
+      <td>
+        <%= number_to_currency(order_presenter.total) %>
+      </td>
+    </tr>
+  </tfoot>
+</table>

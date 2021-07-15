@@ -9,16 +9,28 @@ RSpec.describe 'AdminOrders', type: :system do
 
   before do
     driven_by(:rack_test)
-    create_list :order, 20
     login_admin admin
   end
 
   it 'allows admin to see older products by selecting different paginated pages' do
+    create_list :order, 20
     visit admin_root_path
     find('nav.navbar').click_on 'Orders'
     expect(find('div.page-header')).to have_content 'Table of Orders'
     expect(find('#orders-table')).to have_no_content order.id
     find('nav.pagy-bootstrap-nav').click_on 'Next'
     expect(find('#orders-table')).to have_content order.id
+  end
+
+  it 'allows admin to enter the order page from the orders list and see all order details' do
+    visit admin_root_path
+    find('nav.navbar').click_on 'Orders'
+    find('#orders-table').click_on order.id.to_s
+
+    expect(page).to have_content 'Order Details'
+    expect(page).to have_content order.id.to_s
+    expect(page).to have_content order.state
+    expect(page).to have_content order.user.email
+    expect(page).to have_content order.created_at.strftime('%F %R')
   end
 end
