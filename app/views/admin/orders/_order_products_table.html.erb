@@ -8,7 +8,7 @@
     </tr>
   </thead>
   <tbody scope="col">
-    <% products.includes([:brand, :category]).each do |product| %>
+    <% products.each do |product| %>
       <tr scope="row">
         <td>
           <%= product.name %>
