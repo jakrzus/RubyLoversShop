@@ -9,7 +9,7 @@
       </div>
     </div>
     <div class="row">
-      <%= render partial: 'admin/orders/order_products_table', locals: {order: order, order_presenter: order_presenter} %>
+      <%= render partial: 'admin/orders/order_products_table', locals: {products: order.products, order_presenter: order_presenter} %>
     </div>
   </div>
 </div>

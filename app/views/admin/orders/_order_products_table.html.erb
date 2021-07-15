@@ -8,19 +8,19 @@
     </tr>
   </thead>
   <tbody scope="col">
-    <% order.cart_items.includes([:product]).each do |item| %>
+    <% products.each do |product| %>
       <tr scope="row">
         <td>
-          <%= item.product.name %>
+          <%= product.name %>
         </td>
         <td>
-          <%= item.product.brand.name %>
+          <%= product.brand.name %>
         </td>
         <td>
-          <%= item.product.category.name %>
+          <%= product.category.name %>
         </td>
         <td>
-          <%= number_to_currency(item.product.price) %>
+          <%= number_to_currency(product.price) %>
         </td>
       </tr>
     <% end %>
