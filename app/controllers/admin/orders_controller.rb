@@ -9,7 +9,8 @@ module  Admin
 
     def show
       order = Order.find(params[:id])
-      render :show, locals: { order: order, order_presenter: OrderPresenter.new(order) }
+      products = order.products.includes(%i[brand category])
+      render :show, locals: { order: order, products: products, order_presenter: OrderPresenter.new(order) }
     end
   end
 end
