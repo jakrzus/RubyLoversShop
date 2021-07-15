@@ -12,5 +12,15 @@ module  Admin
       products = order.products.includes(%i[brand category])
       render :show, locals: { order: order, products: products, order_presenter: OrderPresenter.new(order) }
     end
+
+    def set_payment
+      payment = Payment.find(params[:payment_id])
+      event = params[:event]
+      order = payment.order
+      result = OrderServices::SetPaymentStatus.new.call payment, event
+      flash.now[:alert] = 'Invalid request!' unless result
+      flash.now[:notice] = 'Succesfully changed payment status!' if result
+      render :show, locals: { order: order, order_presenter: OrderPresenter.new(order) }
+    end
   end
 end

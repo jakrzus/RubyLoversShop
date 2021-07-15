@@ -8,6 +8,7 @@ Rails.application.routes.draw do
     root to: 'pages#dashboard'
     resources :products, only: [:new, :create, :destroy, :edit, :update]
     resources :orders, only: [:index, :show]
+    post 'set_payment', to: 'orders#set_payment'
   end
   
   resources :products, only: [:show]
