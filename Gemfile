@@ -22,6 +22,7 @@ group :development, :test do
   gem 'factory_bot_rails'
   gem 'capybara'
   gem 'bullet'
+  gem 'web-console'
 end
 
 group :development do
