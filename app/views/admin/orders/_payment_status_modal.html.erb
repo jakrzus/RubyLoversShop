@@ -5,7 +5,7 @@
   </button>
   <!-- Modal -->
   <div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-    <%= form_with  url: admin_set_payment_path, local: true do |form| %>
+    <%= form_with  url: admin_payment_path(payment), local: true, method: 'PUT' do |form| %>
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
@@ -16,7 +16,6 @@
           </div>
           <div class="modal-body">
             <% payment.aasm.permitted_transitions.each do |transition| %>
-              <%= hidden_field_tag :payment_id, payment.id.to_s %>
               <%= form.label :event, transition[:state] %>
               <%= form.radio_button :event, transition[:event] %>
             <% end %>
