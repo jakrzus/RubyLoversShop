@@ -14,11 +14,24 @@ module  Admin
     end
 
     def set_payment
-      payment = Payment.find(params[:payment_id])
-      event = params[:event]
+      order = payment.order
       result = OrderServices::SetPaymentStatus.new.call payment, event
       flash.now[result.flash[:type]] = result.flash[:message]
-      render :show, locals: { order: payment.order, order_presenter: OrderPresenter.new(payment.order) }
+      render :show, locals: { order: order, order_presenter: OrderPresenter.new(order) }
+    end
+
+    private
+
+    def event_params
+      params.require(:event).permit(:id, :payment_id)
+    end
+
+    def event
+      event_params(:name)
+    end
+
+    def payment
+      Payment.find(event_params[:payment_id])
     end
   end
 end
