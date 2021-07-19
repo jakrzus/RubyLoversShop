@@ -16,11 +16,9 @@ module  Admin
     def set_payment
       payment = Payment.find(params[:payment_id])
       event = params[:event]
-      order = payment.order
       result = OrderServices::SetPaymentStatus.new.call payment, event
-      flash.now[:alert] = 'Invalid request!' unless result
-      flash.now[:notice] = 'Succesfully changed payment status!' if result
-      render :show, locals: { order: order, order_presenter: OrderPresenter.new(order) }
+      flash.now[result.flash[:type]] = result.flash[:message]
+      render :show, locals: { order: payment.order, order_presenter: OrderPresenter.new(payment.order) }
     end
   end
 end
