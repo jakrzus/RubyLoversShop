@@ -12,7 +12,8 @@
         Id: <%= order.id %> <br>
         Created: <%= order_presenter.created_at %><br>
         User:  <%= order.user.email %><br>
-        Status: <%= order.state %>
+        Status: <%= order.state %><br>
+        Payment status: <%= order.payment.state %>
       </td>
       <td>
         <address>
