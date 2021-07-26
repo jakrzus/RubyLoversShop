@@ -1,0 +1,30 @@
+<% if shipment.aasm.permitted_transitions.any? %>
+  <!-- Button trigger modal -->
+  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#shipmentModal">
+    Change shipment status
+  </button>
+  <!-- Modal -->
+  <div class="modal fade" id="shipmentModal" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="paymentModalLabel" aria-hidden="true">
+    <%= form_with  url: admin_shipment_path(shipment), local: true, method: 'PUT' do |form| %>
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="paymentModalLabel">Set shipment status to:</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <% shipment.aasm.permitted_transitions.each do |transition| %>
+              <%= form.label :event, transition[:state] %>
+              <%= form.radio_button :event, transition[:event] %>
+            <% end %>
+          </div>
+          <div class="modal-footer">
+            <%= form.submit "Save", class: 'btn btn-primary'%>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+<% end %>

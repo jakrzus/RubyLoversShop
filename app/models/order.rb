@@ -12,6 +12,8 @@ class Order < ApplicationRecord
   enum state: STATES, _prefix: true, _default: :new
 
   delegate :state, to: :payment, prefix: 'payment'
+  delegate :state, to: :shipment, prefix: 'shipment'
+  delegate :email, to: :user, prefix: 'user'
 
   before_create :build_payment
 end
