@@ -20,9 +20,8 @@ class Shipment < ApplicationRecord
     end
   end
 
-  def payment_completed?
-    order.payment.completed?
-  end
+  delegate :completed?, to: :payment, prefix: true
 
   belongs_to :order
+  has_one :payment, through: :order
 end

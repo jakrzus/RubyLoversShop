@@ -14,4 +14,5 @@ class Payment < ApplicationRecord
     end
   end
   belongs_to :order
+  has_one :shipment, through: :order
 end
