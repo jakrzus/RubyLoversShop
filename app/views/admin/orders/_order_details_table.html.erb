@@ -12,9 +12,9 @@
         Id: <%= order.id %> <br>
         Created: <%= order_presenter.created_at %><br>
         User:  <%= order.user_email %><br>
-        Status: <%= order.state %><br>
-        Payment status: <%= order.payment_state %><br>
-        Shipment status: <%= order.shipment_state %>
+        Order status: <span class="badge badge-pill <%= bootstrap_status_pill_class(order.state) %>"><%= order.state %></span><br>
+        Payment status: <span class="badge badge-pill <%= bootstrap_status_pill_class(order.payment_state) %>"><%= order.payment_state %></span><br>
+        Shipment status: <span class="badge badge-pill <%= bootstrap_status_pill_class(order.shipment_state) %>"><%= order.shipment_state %></span><br>
       </td>
       <td>
         <address>
