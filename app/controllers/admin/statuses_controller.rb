@@ -23,7 +23,7 @@ module Admin
     end
 
     def order
-      resource.order || self
+      resource.instance_of?(Order) ? resource : resource.order
     end
   end
 end
