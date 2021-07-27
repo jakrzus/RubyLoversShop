@@ -1,21 +1,21 @@
-<% if payment.aasm.permitted_transitions.any? %>
+<% if resource.aasm.permitted_transitions.any? %>
   <!-- Button trigger modal -->
-  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#paymentModal">
-    Change payment status
+  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#<%= resource_name(resource) %>Modal">
+    Change <%= resource_name(resource) %> status
   </button>
   <!-- Modal -->
-  <div class="modal fade" id="paymentModal" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="paymentModalLabel" aria-hidden="true">
-    <%= form_with  url: admin_payment_path(payment), local: true, method: 'PUT' do |form| %>
+  <div class="modal fade" id="<%= resource_name(resource) %>Modal" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="<%= resource_name(resource) %>ModalLabel" aria-hidden="true">
+    <%= form_with  url: url, local: true, method: 'PUT' do |form| %>
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title" id="paymentModalLabel">Set payment status to:</h5>
+            <h5 class="modal-title" id="<%= resource_name(resource) %>ModalLabel">Set  <%= resource_name(resource) %> status to:</h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
           <div class="modal-body">
-            <% payment.aasm.permitted_transitions.each do |transition| %>
+            <% resource.aasm.permitted_transitions.each do |transition| %>
               <%= form.label :event, transition[:state] %>
               <%= form.radio_button :event, transition[:event] %>
             <% end %>

@@ -23,7 +23,7 @@
           Mountain View, CA 94041<br>
           USA
         </address>
-        <%= render partial: 'payment_status_modal', locals: { payment: order.payment } %>
+        <%= render partial: 'change_status_modal', locals: { resource: order.payment, url: admin_payment_path(order.payment) } %>
       </td>
       <td>
         <address>
@@ -32,7 +32,7 @@
           Mountain View, CA 94041<br>
           USA<br>
         </address>
-        <%= render partial: 'shipment_status_modal', locals: { shipment: order.shipment } %>
+        <%= render partial: 'change_status_modal', locals: { resource: order.shipment, url: admin_shipment_path(order.shipment) } %>
       </td>
     </tr>
   </tbody>
