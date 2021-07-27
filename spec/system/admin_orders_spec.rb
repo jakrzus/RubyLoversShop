@@ -66,4 +66,17 @@ RSpec.describe 'AdminOrders', type: :system do
 
     expect(page).to have_content 'Shipment status: shipped'
   end
+
+  it 'allows admin to change order status to failed' do
+    driven_by(:selenium_headless)
+    login_admin admin
+    visit admin_root_path
+    find('nav.navbar').click_on 'Orders'
+    find('#orders-table').click_on order.id.to_s
+    click_button 'Change order status'
+    choose 'event_cancel'
+    click_button 'Save'
+
+    expect(page).to have_content 'Order status: failed'
+  end
 end
