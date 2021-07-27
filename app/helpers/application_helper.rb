@@ -28,4 +28,8 @@ module ApplicationHelper
       ''
     end
   end
+
+  def resource_name(resource)
+    resource.class.to_s.downcase
+  end
 end
