@@ -3,7 +3,7 @@
 module Admin
   class PaymentsController < AdminController
     def update
-      result = OrderServices::SetPaymentStatus.new.call payment, event
+      result = OrderServices::SetPaymentStatus.new.call(payment, event)
       flash[result.flash[:type]] = result.flash[:message]
       redirect_to admin_order_path payment.order
     end
