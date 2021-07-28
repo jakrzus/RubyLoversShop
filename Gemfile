@@ -15,6 +15,7 @@ gem 'devise'
 gem 'aws-sdk-s3', require: false
 gem 'faker'
 gem 'pagy', '~> 3.5'
+gem 'aasm'
 group :development, :test do
   gem 'pry-rails'
   gem 'pry-byebug'
@@ -22,6 +23,7 @@ group :development, :test do
   gem 'factory_bot_rails'
   gem 'capybara'
   gem 'bullet'
+  gem 'selenium-webdriver'
 end
 
 group :development do

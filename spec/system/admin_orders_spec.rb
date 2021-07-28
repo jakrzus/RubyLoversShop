@@ -2,6 +2,7 @@
 
 require 'rails_helper'
 require './spec/support/helpers'
+require 'selenium-webdriver'
 
 RSpec.describe 'AdminOrders', type: :system do
   let!(:admin) { create :admin_user }
@@ -32,5 +33,18 @@ RSpec.describe 'AdminOrders', type: :system do
     expect(page).to have_content order.state
     expect(page).to have_content order.user.email
     expect(page).to have_content order.created_at.strftime('%F %R')
+  end
+
+  it 'allows admin to change payment status to complete' do
+    driven_by(:selenium_headless)
+    login_admin admin
+    visit admin_root_path
+    find('nav.navbar').click_on 'Orders'
+    find('#orders-table').click_on order.id.to_s
+    click_button 'Change payment status'
+    choose 'event_complete'
+    click_button 'Save'
+
+    expect(page).to have_content 'Payment status: completed'
   end
 end

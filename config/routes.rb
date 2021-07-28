@@ -8,6 +8,7 @@ Rails.application.routes.draw do
     root to: 'pages#dashboard'
     resources :products, only: [:new, :create, :destroy, :edit, :update]
     resources :orders, only: [:index, :show]
+    resources :payments, only: :update
   end
   
   resources :products, only: [:show]
