@@ -10,5 +10,7 @@ class Order < ApplicationRecord
 
   enum state: STATES, _prefix: true, _default: :new
 
+  delegate :state, to: :payment, prefix: 'payment'
+
   before_create :build_payment
 end
