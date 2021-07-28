@@ -15,5 +15,5 @@ class Order < ApplicationRecord
   delegate :state, to: :shipment, prefix: 'shipment'
   delegate :email, to: :user, prefix: 'user'
 
-  before_create :build_payment
+  before_create :build_payment, :build_shipment
 end
