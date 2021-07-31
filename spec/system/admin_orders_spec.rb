@@ -48,7 +48,7 @@ RSpec.describe 'AdminOrders', type: :system do
     expect(page).to have_content 'Payment status: completed'
   end
 
-  it 'allows admin to change shipment status to ready' do
+  it 'allows admin to change shipment status to shipped' do
     driven_by(:selenium_headless)
     login_admin admin
     visit admin_root_path
@@ -57,7 +57,13 @@ RSpec.describe 'AdminOrders', type: :system do
     click_button 'Change shipment status'
     choose 'event_prepare'
     click_button 'Save'
+    click_button 'Change payment status'
+    choose 'event_complete'
+    click_button 'Save'
+    click_button 'Change shipment status'
+    choose 'event_ship'
+    click_button 'Save'
 
-    expect(page).to have_content 'Shipment status: ready'
+    expect(page).to have_content 'Shipment status: shipped'
   end
 end
