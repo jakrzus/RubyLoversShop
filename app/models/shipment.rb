@@ -11,12 +11,10 @@ class Shipment < ApplicationRecord
     end
     event :cancel do
       transitions from: :pending, to: :canceled
+      transitions from: :ready, to: :failed
     end
     event :ship do
       transitions from: :ready, to: :shipped, guard: :payment_completed?
-    end
-    event :fail do
-      transitions from: :ready, to: :failed
     end
   end
 
