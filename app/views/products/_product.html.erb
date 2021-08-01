@@ -1,16 +1,16 @@
 <div class="col-10">
   <div class="card product-card">
     <% if product.photos.any? %>
-      <%= image_tag product.photos.first, class: "card-img-top product-card-img" %>
+      <%= image_tag product.photos.first, class: "card-img-top product-card-img mt-3" %>
     <% else %>
-      <%= image_tag "http://placehold.it/700x400", class: "card-img-top product-card-placeholder-img" %>
+      <%= image_tag "http://placehold.it/700x400", class: "card-img-top product-card-placeholder-img mt-3" %>
     <% end %>
     <div class="card-body">
       <h4 class="card-title"><%= product.name %></h4>
       <h6><%= product.brand.name %></h6>
       <h6><%= product.category.name %></h6>
       <h5><%= number_to_currency(product.price) %></h5>
-      <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet numquam aspernatur!</p>
+      <p class="card-text"><%= product.description %></p>
     </div>
     <div class="card-footer">
       <div class="row">
