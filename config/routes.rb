@@ -9,6 +9,7 @@ Rails.application.routes.draw do
     resources :products, only: [:new, :create, :destroy, :edit, :update]
     resources :orders, only: [:index, :show]
     resources :payments, only: :update
+    resources :shipments, only: :update
   end
   
   resources :products, only: [:show]

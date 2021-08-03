@@ -11,9 +11,10 @@
       <td>
         Id: <%= order.id %> <br>
         Created: <%= order_presenter.created_at %><br>
-        User:  <%= order.user.email %><br>
+        User:  <%= order.user_email %><br>
         Status: <%= order.state %><br>
-        Payment status: <%= order.payment_state %>
+        Payment status: <%= order.payment_state %><br>
+        Shipment status: <%= order.shipment_state %>
       </td>
       <td>
         <address>
@@ -22,15 +23,16 @@
           Mountain View, CA 94041<br>
           USA
         </address>
-        <%= render partial: 'payment_status_modal', locals: {payment: order.payment} %>
+        <%= render partial: 'payment_status_modal', locals: { payment: order.payment } %>
       </td>
       <td>
         <address>
           Mozilla Foundation<br>
           331 E Evelyn Ave<br>
           Mountain View, CA 94041<br>
-          USA
+          USA<br>
         </address>
+        <%= render partial: 'shipment_status_modal', locals: { shipment: order.shipment } %>
       </td>
     </tr>
   </tbody>

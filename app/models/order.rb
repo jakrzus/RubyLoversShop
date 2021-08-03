@@ -7,10 +7,13 @@ class Order < ApplicationRecord
   has_many :cart_items, dependent: :destroy
   has_many :products, through: :cart_items
   has_one :payment, dependent: :destroy
+  has_one :shipment, dependent: :destroy
 
   enum state: STATES, _prefix: true, _default: :new
 
   delegate :state, to: :payment, prefix: 'payment'
+  delegate :state, to: :shipment, prefix: 'shipment'
+  delegate :email, to: :user, prefix: 'user'
 
-  before_create :build_payment
+  before_create :build_payment, :build_shipment
 end
