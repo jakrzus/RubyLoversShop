@@ -22,7 +22,7 @@ module Admin
     end
 
     def shipment
-      Shipment.find params[:id]
+      @shipment ||= Shipment.find(params[:id])
     end
 
     def order
