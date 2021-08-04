@@ -1,9 +1,8 @@
 require 'uri'
-user = User.new(email: 'email@example', password: 'password')
-admin = AdminUser.new(email: 'admin@example', password: 'password')
 
-User.where(email: user.email).first_or_create(user.as_json)
-AdminUser.where(email: admin.email).first_or_create(admin.as_json)
+User.create(email: 'email@example', password: 'password')
+AdminUser.create(email: 'admin@example', password: 'password')
+
 3.times do
   category = Category.new(name: Faker::Vehicle.unique.car_type)
   brand = Brand.new(name: Faker::Vehicle.unique.make)
