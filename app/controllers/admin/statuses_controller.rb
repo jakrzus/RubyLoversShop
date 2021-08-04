@@ -7,7 +7,7 @@ module Admin
       respond_to do |format|
         format.html do
           set_flash(flash, response)
-          redirect_to admin_order_path order
+          redirect_to admin_order_path(order)
         end
         format.json do
           render json: response.payload
