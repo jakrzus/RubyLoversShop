@@ -5,7 +5,7 @@ module Admin
     private
 
     def resource
-      @shipment ||= Shipment.find(params[:id])
+      @shipment ||= Shipment.find(params[:id]) # rubocop:disable Naming/MemoizedInstanceVariableName
     end
   end
 end
