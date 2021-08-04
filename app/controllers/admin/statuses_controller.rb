@@ -3,9 +3,16 @@
 module Admin
   class StatusesController < AdminController
     def update
-      result = service.call resource, event
-      flash[result.flash[:type]] = result.flash[:message]
-      redirect_to admin_order_path order
+      response = service.call(resource, event)
+      respond_to do |format|
+        format.html do
+          set_flash(flash, response)
+          redirect_to admin_order_path order
+        end
+        format.json do
+          render json: response.payload
+        end
+      end
     end
 
     private
@@ -24,6 +31,10 @@ module Admin
 
     def order
       resource.instance_of?(Order) ? resource : resource.order
+    end
+
+    def set_flash(flash, response)
+      flash[response.flash[:type]] = response.flash[:message]
     end
   end
 end
