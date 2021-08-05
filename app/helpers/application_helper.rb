@@ -28,4 +28,23 @@ module ApplicationHelper
       ''
     end
   end
+
+  def bootstrap_status_pill_class(type)
+    case type
+    when 'new', 'pending'
+      'badge-primary'
+    when 'failed', 'canceled'
+      'badge-danger'
+    when 'completed', 'shipped'
+      'badge-success'
+    when 'ready'
+      'badge-info'
+    else
+      'badge-secondary'
+    end
+  end
+
+  def resource_name(resource)
+    resource.class.to_s.downcase
+  end
 end

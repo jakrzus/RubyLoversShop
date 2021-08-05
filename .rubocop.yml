@@ -34,6 +34,7 @@ Metrics/BlockLength:
    - spec/system/**
    - spec/requests/carts_request_spec.rb
    - spec/requests/admin_shipments_spec.rb
+   - spec/requests/admin_orders_statuses_spec.rb
 RSpec/ExampleLength:
   Exclude:
     - spec/system/**

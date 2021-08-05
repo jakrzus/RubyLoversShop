@@ -10,6 +10,7 @@ Rails.application.routes.draw do
     resources :orders, only: [:index, :show]
     resources :payments, only: :update
     resources :shipments, only: :update
+    resources :order_statuses, only: :update
   end
   
   resources :products, only: [:show]
