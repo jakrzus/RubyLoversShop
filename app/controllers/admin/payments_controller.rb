@@ -5,7 +5,7 @@ module Admin
     private
 
     def resource
-      @payment ||= Payment.find(params[:id]) # rubocop:disable Naming/MemoizedInstanceVariableName
+      @resource ||= Payment.find(params[:id])
     end
   end
 end

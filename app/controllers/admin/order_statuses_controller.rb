@@ -5,7 +5,7 @@ module Admin
     private
 
     def resource
-      @order ||= Order.find(params[:id]) # rubocop:disable Naming/MemoizedInstanceVariableName
+      @resource ||= Order.find(params[:id])
     end
   end
 end
