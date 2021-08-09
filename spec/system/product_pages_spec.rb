@@ -4,7 +4,7 @@ require 'rails_helper'
 require './spec/support/helpers'
 
 RSpec.describe 'ProductPages', type: :system do
-  let!(:product) { create :product }
+  let!(:product) { create :product, :with_photo }
   let!(:user) { create :user }
 
   before do
@@ -20,7 +20,7 @@ RSpec.describe 'ProductPages', type: :system do
     find('.product-card').click_on product.name
     expect(page).to have_content(product.name)
     expect(page).to have_content(product.price)
-    expect(page).to have_content(product.photos.first)
+    expect(page).to have_css("img[src=\"#{url_for(product.photos.first)}\"]")
     expect(page).to have_content(product.description)
   end
 
@@ -29,7 +29,7 @@ RSpec.describe 'ProductPages', type: :system do
     click_on "product #{product.id} image"
     expect(page).to have_content(product.name)
     expect(page).to have_content(product.price)
-    expect(page).to have_content(product.photos.first)
+    expect(page).to have_css("img[src=\"#{url_for(product.photos.first)}\"]")
     expect(page).to have_content(product.description)
   end
 end
