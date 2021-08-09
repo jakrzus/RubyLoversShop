@@ -16,4 +16,12 @@ class CartItemPresenter
   def name
     @item.product.name
   end
+
+  def photo
+    @item.product.photos.first
+  end
+
+  def description
+    @item.product.description.truncate(100)
+  end
 end
