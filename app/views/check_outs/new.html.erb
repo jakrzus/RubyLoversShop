@@ -1,13 +1,4 @@
 <div class="card">
   <h4 class="card-header text-center">Check Out</h4>
-  <% order.cart_items.each do |item| %>
-    <ul class= "list-group list-group-flush">
-      <li class="list-group-item">
-        <h4>
-          <%= item.product.name %>
-        </h4>
-        <%= number_to_currency item.product.price %>
-      </li>
-    </ul>
-  <% end %>
+  <%= render partial: 'carts/items_list', locals: { items: items, total_presenter: order_presenter } %>
 </div>

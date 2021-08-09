@@ -1,47 +1,6 @@
 <div class="card">
   <h4 class="card-header text-center">Your Cart</h4>
-  <div class="card-body p-0">
-    <ul class= "list-group list-group-flush">
-      <% items.each do |item| %>
-        <% item_presenter = CartItemPresenter.new(item) %>
-        <li class="list-group-item">
-          <div class="media">
-            <%= image_tag item_presenter.photo, class: "img-thumbnail mr-4", style: "width: 100px" %>
-            <div class="media-body">
-              <h4>
-                <%= item_presenter.name %>
-              </h4>
-              <%= item_presenter.description %>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col">
-              <%= number_to_currency item_presenter.price %>
-            </div>
-            <div class="col">
-              X <%= item.quantity %>
-            </div>
-            <div class="col">
-              Item total: 
-              <h6><%= number_to_currency(item_presenter.total_price) %></h6>
-            </div>
-          </div>
-        </li>
-      <% end %>
-      <li class="list-group-item list-group-item-info">
-        <h3>
-          <div class="row">
-            <div class="col">
-              Cart total:
-            </div>
-            <div class="col">
-              <%= number_to_currency(cart_presenter.total) %>
-            </div>
-          </div>
-        </h3>
-      </li>
-    </ul>
-  </div>
+  <%= render partial: 'carts/items_list', locals: { items: items, total_presenter: cart_presenter } %>
   <div class = "card-footer">
     <div class= "row">
       <div class= "col-6">
