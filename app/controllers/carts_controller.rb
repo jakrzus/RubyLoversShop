@@ -8,7 +8,7 @@ class CartsController < ApplicationController
 
   def add_product
     product = Product.find params[:id]
-    add_product = CartServices::AddProduct.new.call cart, product
+    add_product = CartServices::AddProduct.new.call cart, product, quantity
     if add_product.success?
       redirect_to root_path, notice: 'Product added successfully'
     else
@@ -42,5 +42,9 @@ class CartsController < ApplicationController
 
   def cart
     @cart ||= current_user.cart
+  end
+
+  def quantity
+    params[:quantity].to_i
   end
 end
