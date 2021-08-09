@@ -3,11 +3,23 @@
   <div class="card-body">
     <ul class= "list-group list-group-flush">
       <% items.each do |item| %>
+        <% item_presenter = CartItemPresenter.new(item) %>
         <li class="list-group-item">
           <h4>
-            <%= item.product.name %>
+            <%= item_presenter.name %>
           </h4>
-          <%= number_to_currency item.product.price %>
+          <div class="row">
+            <div class="col">
+              <%= number_to_currency item_presenter.price %>
+            </div>
+            <div class="col">
+              X <%= item.quantity %>
+            </div>
+            <div class="col">
+              Total: 
+              <h6><%= item_presenter.total_price %></h6>
+            </div>
+          </div>
         </li>
       <% end %>
     </ul>
