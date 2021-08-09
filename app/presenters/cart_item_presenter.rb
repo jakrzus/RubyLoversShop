@@ -18,7 +18,7 @@ class CartItemPresenter
   end
 
   def photo
-    @item.product.photos.first
+    @item.product.photos.first || 'http://placehold.it/500x500'
   end
 
   def description
