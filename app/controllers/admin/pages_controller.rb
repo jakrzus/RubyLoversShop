@@ -4,7 +4,7 @@ module Admin
   class PagesController < AdminController
     def dashboard
       render :dashboard,
-             locals: { products: Product.filtered(filter_params).includes(%i[brand category photos_attachments]) }
+             locals: { products: Product.filtered(filter_params).includes(%i[brand category]).with_attached_photos }
     end
 
     private
