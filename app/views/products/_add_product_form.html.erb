@@ -1,0 +1,11 @@
+<%= form_with  url: add_product_path(product), method: :post, local: true do |f| %>
+  <div class="form-row align-items-center">
+    <div class="col-auto">
+      <%= f.label :quantity, "Quantity:" %>
+      <%= f.number_field :quantity, min: 1 %>
+    </div>
+    <div class="col-auto">
+      <%= f.submit "Add to cart", disable_with: 'Adding...', class: "btn btn-primary mb-2" %>
+    </div>
+  </div>
+<% end %>
