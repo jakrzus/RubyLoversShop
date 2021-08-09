@@ -3,7 +3,7 @@
 class CartsController < ApplicationController
   before_action :authenticate_user!
   def show
-    render :show, locals: { items: cart.cart_items }
+    render :show, locals: { items: cart.cart_items.includes(:product) }
   end
 
   def add_product
