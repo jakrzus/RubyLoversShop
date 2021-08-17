@@ -1,9 +1,11 @@
 <div class="col-lg-4 col-md-6 mb-4">
   <div class="card h-100 product-card">
     <% if product.photos.any? %>
-      <%= image_tag product.photos.first, class: "card-img-top product-card-img" %>
+      <%= link_to(image_tag(product.photos.first, class: "card-img-top product-card-img mt-3", alt: "product #{product.id} image"), 
+                  product_path(product)) %>
     <% else %>
-      <a href="#"><img class="card-img-top product-card-placeholder-img" src="http://placehold.it/700x400" alt=""></a>
+      <%= link_to(image_tag('http://placehold.it/500x500', class: "card-img-top product-card-placeholder-img mt-3", alt: "product #{product.id} image"), 
+                  product_path(product)) %>
     <% end %>
     <div class="card-body">
       <h4 class="card-title">
@@ -12,7 +14,7 @@
       <h6><%= product.brand.name %></h6>
       <h6><%= product.category.name %></h6>
       <h5><%= number_to_currency(product.price) %></h5>
-      <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet numquam aspernatur!</p>
+      <p class="card-text"><%= product.description.truncate(20) %></p>
     </div>
     <div class="card-footer">
       <div class="row">

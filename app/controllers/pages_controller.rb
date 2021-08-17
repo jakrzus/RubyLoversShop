@@ -2,7 +2,9 @@
 
 class PagesController < ApplicationController
   def home
-    products = Product.filtered(filter_params).includes(%i[brand category photos_attachments])
+    @pagy, products = pagy(Product.filtered(filter_params)
+                      .includes(%i[brand category photos_attachments])
+                      .order(created_at: :desc))
     render :home, locals: { products: products }
   end
 

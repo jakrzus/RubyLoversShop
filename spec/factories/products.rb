@@ -3,7 +3,8 @@
 FactoryBot.define do
   factory :product do
     sequence(:name) { |n| "Product#{n}" }
-    price { '999.99' }
+    price { Faker::Number.decimal(l_digits: 3, r_digits: 2) }
+    description { Faker::Lorem.sentences(number: 20).join(' ') }
     category { Category.any? ? Category.all.sample : create(:category) }
     brand { Brand.any? ? Brand.all.sample : create(:brand) }
     trait :with_photo do

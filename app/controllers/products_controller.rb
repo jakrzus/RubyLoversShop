@@ -3,6 +3,13 @@
 class ProductsController < ApplicationController
   def show
     product = Product.find(params[:id])
-    render :show, locals: { product: product, product_presenter: ProductPresenter.new(product) }
+    respond_to do |format|
+      format.html do
+        render :show, locals: { product: product, product_presenter: ProductPresenter.new(product) }
+      end
+      format.json do
+        render json: product
+      end
+    end
   end
 end
