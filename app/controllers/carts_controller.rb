@@ -20,7 +20,7 @@ class CartsController < ApplicationController
     items = current_user.cart.cart_items
     if items.destroy_all
       render :show, locals: { cart_presenter: CartPresenter.new(cart), items: current_user.cart.cart_items },
-                    notice: 'All products has been deleted'
+                    notice: 'All products have been deleted'
     else
       render :show, locals: { cart_presenter: CartPresenter.new(cart), items: current_user.cart.cart_items },
                     allert: 'Ups! Something went wrong'
