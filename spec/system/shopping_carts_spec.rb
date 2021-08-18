@@ -2,9 +2,10 @@
 
 require 'rails_helper'
 require './spec/support/helpers'
-include ActiveSupport::NumberHelper
 
 RSpec.describe 'ShoppingCarts', type: :system do
+  include ActiveSupport::NumberHelper
+
   let!(:user) { create :user }
   let!(:product) { create :product }
 
