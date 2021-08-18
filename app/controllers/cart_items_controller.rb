@@ -1,10 +1,11 @@
 class CartItemsController < ApplicationController
   def update
     item = CartItem.find(params[:id])
-    if item.update(item_params)
-      redirect_to cart_path, notice: 'Product updated successfully'
+    response = CartServices::UpdateItemQuantity.new.call(current_user, item, item_params)
+    if response.success?
+      redirect_to cart_path, notice: response.flash
     else
-      redirect_to cart_path, alert: 'Product not updated successfully'
+      redirect_to cart_path, alert: response.flash
     end
   end
 
