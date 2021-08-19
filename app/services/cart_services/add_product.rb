@@ -4,7 +4,7 @@ module CartServices
   class AddProduct
     def call(cart, product, quantity = 1)
       if cart_include_product?(cart, product)
-        raise_quantity(cart, product, quantity)
+        append_quantity(cart, product, quantity)
       else
         create_item(cart, product, quantity)
       end
@@ -22,7 +22,7 @@ module CartServices
       save_item(item)
     end
 
-    def raise_quantity(cart, product, quantity)
+    def append_quantity(cart, product, quantity)
       item = cart.cart_items.find_by(product_id: product)
       item.quantity += quantity
 
