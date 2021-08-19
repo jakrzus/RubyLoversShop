@@ -21,7 +21,7 @@
           <%= order.user.email %>
         </td>
         <td>
-          <%= number_to_currency(OrderPresenter.new(order).total) %>
+          <%= number_to_currency(OrderPresenter.new(order).total_price) %>
         </td>
         <td>
           <%= order.state %>

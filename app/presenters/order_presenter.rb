@@ -5,7 +5,7 @@ class OrderPresenter
     @order = order
   end
 
-  def total
+  def total_price
     items = @order.cart_items.includes(:product)
     items.map { |item| CartItemPresenter.new(item).total_price }.sum
   end
