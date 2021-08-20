@@ -1,4 +1,4 @@
 <div class="card">
   <h4 class="card-header text-center">Check Out</h4>
-  <%= render partial: 'carts/items_list', locals: { items: items, total_presenter: order_presenter } %>
+  <%= render partial: 'carts/items_list', locals: { items: items, total_items_price: order_presenter.total_price } %>
 </div>

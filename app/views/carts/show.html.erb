@@ -1,6 +1,6 @@
 <div class="card">
   <h4 class="card-header text-center">Your Cart</h4>
-  <%= render partial: 'carts/items_list', locals: { items: items, total_presenter: cart_presenter } %>
+  <%= render partial: 'carts/items_list', locals: { items: items, total_items_price: cart_presenter.total_price } %>
   <div class = "card-footer">
     <div class= "row">
       <div class= "col-6">
