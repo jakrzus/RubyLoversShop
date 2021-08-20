@@ -5,6 +5,6 @@ class CheckOutsController < ApplicationController
 
   def new
     order = current_user.orders.where(state: :new).last
-    render :new, locals: { order: order }
+    render :new, locals: { order: order, items: order.cart_items, order_presenter: OrderPresenter.new(order) }
   end
 end

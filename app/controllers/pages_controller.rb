@@ -3,7 +3,8 @@
 class PagesController < ApplicationController
   def home
     @pagy, products = pagy(Product.filtered(filter_params)
-                      .includes(%i[brand category photos_attachments])
+                      .includes(%i[brand category])
+                      .with_attached_photos
                       .order(created_at: :desc))
     render :home, locals: { products: products }
   end

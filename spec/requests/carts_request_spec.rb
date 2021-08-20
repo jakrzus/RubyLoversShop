@@ -15,7 +15,15 @@ RSpec.describe 'Carts', type: :request do
     it 'allows adding only one product of its kind' do
       2.times { post "/add_product/#{product.id}" }
 
+      expect(response).to redirect_to '/'
       expect(user.cart.cart_items.count).to eq 1
+    end
+
+    it 'allows adding multiple items of a product' do
+      post "/add_product/#{product.id}", params: { quantity: 4 }
+
+      expect(response).to redirect_to '/'
+      expect(user.cart.cart_items.find_by(product_id: product.id).quantity).to eq 4
     end
   end
 

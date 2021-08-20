@@ -3,12 +3,12 @@
 class CartsController < ApplicationController
   before_action :authenticate_user!
   def show
-    render :show, locals: { items: cart.cart_items }
+    render :show, locals: { cart_presenter: CartPresenter.new(cart), items: cart.cart_items.includes(:product) }
   end
 
   def add_product
     product = Product.find params[:id]
-    add_product = CartServices::AddProduct.new.call cart, product
+    add_product = CartServices::AddProduct.new.call(cart, product, quantity)
     if add_product.success?
       redirect_to root_path, notice: 'Product added successfully'
     else
@@ -19,9 +19,11 @@ class CartsController < ApplicationController
   def destroy
     items = current_user.cart.cart_items
     if items.destroy_all
-      render :show, locals: { items: current_user.cart.cart_items }, notice: 'All products has been deleted'
+      render :show, locals: { cart_presenter: CartPresenter.new(cart), items: current_user.cart.cart_items },
+                    notice: 'All products have been deleted'
     else
-      render :show, locals: { items: current_user.cart.cart_items }, allert: 'Ups! Something went wrong'
+      render :show, locals: { cart_presenter: CartPresenter.new(cart), items: current_user.cart.cart_items },
+                    allert: 'Ups! Something went wrong'
     end
   end
 
@@ -42,5 +44,9 @@ class CartsController < ApplicationController
 
   def cart
     @cart ||= current_user.cart
+  end
+
+  def quantity
+    params[:quantity].to_i
   end
 end

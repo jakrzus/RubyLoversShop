@@ -17,9 +17,7 @@
       <p class="card-text"><%= product.description.truncate(20) %></p>
     </div>
     <div class="card-footer">
-      <div class="row">
-        <%= button_to "Add to cart", add_product_path(product), class: "btn btn-primary mx-1" %>
-      </div>
+      <%= render partial: 'products/add_product_form', locals: { product: product} %>
     </div>
   </div>
 </div>

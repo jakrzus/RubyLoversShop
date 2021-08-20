@@ -4,6 +4,8 @@ require 'rails_helper'
 require './spec/support/helpers'
 
 RSpec.describe 'ShoppingCarts', type: :system do
+  include ActiveSupport::NumberHelper
+
   let!(:user) { create :user }
   let!(:product) { create :product }
 
@@ -36,6 +38,20 @@ RSpec.describe 'ShoppingCarts', type: :system do
     expect(page).to have_content 'Your Cart'
     expect(page).to have_content product.name
     expect(page).to have_content product.price
+  end
+
+  it 'allows user to add three items of a product to the shopping cart' do
+    visit root_path
+    click_on product.name
+    fill_in 'quantity', with: 3
+    click_button 'Add to cart'
+    click_on user.email
+    click_on 'Shopping Cart'
+
+    expect(page).to have_content 'Your Cart'
+    expect(page).to have_content product.name
+    expect(page).to have_content number_to_currency(product.price)
+    expect(page).to have_content number_to_currency(product.price * 3)
   end
 
   it 'allows user to check out' do

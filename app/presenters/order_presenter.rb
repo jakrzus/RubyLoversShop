@@ -5,8 +5,9 @@ class OrderPresenter
     @order = order
   end
 
-  def total
-    @order.products.pluck(:price).sum
+  def total_price
+    items = @order.cart_items.includes(:product)
+    items.map { |item| CartItemPresenter.new(item).total_price }.sum
   end
 
   def created_at
