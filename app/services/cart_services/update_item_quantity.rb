@@ -4,7 +4,7 @@ module CartServices
   class UpdateItemQuantity
     def call(user, item, params)
       return OpenStruct.new(success?: false, flash: 'You are not authorized') unless authorized?(user, item)
-      return CartServices::RemoveItem.new.call(item) if params[:quantity].to_i.zero?
+      return CartServices::RemoveItem.new.call(item, user) if params[:quantity].to_i.zero?
 
       if item.update!(params)
         OpenStruct.new(success?: true, flash: 'Item updated successfully')
