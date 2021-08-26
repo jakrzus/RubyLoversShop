@@ -8,4 +8,5 @@ class User < ApplicationRecord
   has_one :cart, dependent: :destroy
   before_create :build_cart
   has_many :orders, dependent: :restrict_with_exception
+  has_many :cart_items, through: :cart
 end
