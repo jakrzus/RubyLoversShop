@@ -3,7 +3,7 @@
 module CartServices
   class RemoveItem
     def call(item, user)
-      cart_user = item.cart.user
+      cart_user = item.user
       return OpenStruct.new(success?: false, flash: 'Cart does not belong to this user!') if user != cart_user
 
       if item.destroy!
