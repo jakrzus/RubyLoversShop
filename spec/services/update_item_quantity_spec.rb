@@ -28,8 +28,7 @@ RSpec.describe 'UpdateItemQuantityService' do
 
   it 'removes item from the cart if quantity is zero' do
     user = item.cart.user
-    params = { quantity: '0' }
-    response = update_item_quantity.call(user, item, params)
+    response = update_item_quantity.call(user, item, { quantity: '0' })
     expect(response.success?).to be(true)
     expect(response.flash).to eq('Item removed successfully')
     expect(item.cart.cart_items).to be_empty
