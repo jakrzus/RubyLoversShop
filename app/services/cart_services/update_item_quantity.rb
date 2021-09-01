@@ -4,7 +4,6 @@ module CartServices
   class UpdateItemQuantity
     def call(user, item, params)
       raise StandardError, 'Quantity can not be nil' unless params[:quantity]
-      # return OpenStruct.new(success?: false, flash: 'Quantity can not be nil') unless params[:quantity]
       return OpenStruct.new(success?: false, flash: 'You are not authorized') unless authorized?(user, item)
       return CartServices::RemoveItem.new.call(item, user) if params[:quantity].to_i.zero?
 
