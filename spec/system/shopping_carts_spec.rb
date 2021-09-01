@@ -54,6 +54,21 @@ RSpec.describe 'ShoppingCarts', type: :system do
     expect(page).to have_content number_to_currency(product.price * 3)
   end
 
+  it 'allows user to change number of products in the shopping cart' do
+    visit root_path
+    click_on product.name
+    click_button 'Add to cart'
+    click_on user.email
+    click_on 'Shopping Cart'
+    fill_in 'Quantity', with: 15
+    click_on 'Update'
+
+    expect(page).to have_content 'Item updated successfully'
+    click_on 'Check Out'
+    quantity = find('#cart_item_quantity')
+    expect(quantity.value).to eq('15')
+  end
+
   it 'allows user to check out' do
     visit root_path
     click_on product.name
