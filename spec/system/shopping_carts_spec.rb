@@ -69,6 +69,19 @@ RSpec.describe 'ShoppingCarts', type: :system do
     expect(quantity.value).to eq('15')
   end
 
+  it 'allows user to remove item from the shopping cart with one click' do
+    visit root_path
+    click_on product.name
+    click_button 'Add to cart'
+    click_on user.email
+    click_on 'Shopping Cart'
+    click_button 'Remove'
+
+    expect(page).to have_content 'Item removed successfully'
+    expect(page).not_to have_content product.name
+    expect(page).not_to have_content number_to_currency(product.price)
+  end
+
   it 'allows user to check out' do
     visit root_path
     click_on product.name

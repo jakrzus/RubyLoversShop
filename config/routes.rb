@@ -21,5 +21,5 @@ Rails.application.routes.draw do
   post 'add_product/:id', to: 'carts#add_product', as: 'add_product'
 
   resources :check_outs, only: [:new]
-  resources :cart_items, only: [:update]
+  resources :cart_items, only: %i[update destroy]
 end

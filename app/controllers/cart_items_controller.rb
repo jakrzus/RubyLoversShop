@@ -12,6 +12,13 @@ class CartItemsController < ApplicationController
     redirect_to cart_path
   end
 
+  def destroy
+    item = CartItem.find(params[:id])
+    response = CartServices::RemoveItem.new.call(item, current_user)
+    set_flash(flash, response)
+    redirect_to cart_path
+  end
+
   private
 
   def item_params
