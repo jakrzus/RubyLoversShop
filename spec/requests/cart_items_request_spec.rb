@@ -3,15 +3,15 @@
 require 'rails_helper'
 
 RSpec.describe 'CartItems', type: :request do
+  let!(:unauthorized_user) { create :user }
+  let!(:product) { create :product }
+  let!(:item) { create :cart_item, :with_cart }
+
+  before do
+    sign_in item.user
+  end
+
   describe 'PUT /cart_items/:id' do
-    let!(:unauthorized_user) { create :user }
-    let!(:product) { create :product }
-    let!(:item) { create :cart_item, :with_cart }
-
-    before do
-      sign_in item.user
-    end
-
     it 'updates cart_items quantity to 12 if user is the cart owner' do
       put "/cart_items/#{item.id}", params: { cart_item: { quantity: 12 } }
       follow_redirect!
@@ -34,6 +34,26 @@ RSpec.describe 'CartItems', type: :request do
       follow_redirect!
       expect(response.body).to include('Item removed successfully')
       expect(cart.cart_items).to be_empty
+    end
+  end
+
+  describe 'DELETE /cart_items/:id' do
+    it 'removes item if the user is the cart owner' do
+      cart = item.cart
+      delete "/cart_items/#{item.id}"
+      follow_redirect!
+      expect(response.body).to include('Item removed successfully')
+      expect(cart.cart_items).to be_empty
+    end
+
+    it 'does not remove item if the user is not the cart owner' do
+      cart = item.cart
+      sign_out item.user
+      sign_in unauthorized_user
+      delete "/cart_items/#{item.id}"
+      follow_redirect!
+      expect(response.body).to include('Cart does not belong to this user!')
+      expect(cart.cart_items).to include(item)
     end
   end
 end
