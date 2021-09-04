@@ -29,12 +29,12 @@ RSpec/MultipleExpectations:
   Exclude:
     - spec/system/**
     - spec/requests/**
+    - spec/services/**
 Metrics/BlockLength:
   Exclude:
-   - spec/system/**
-   - spec/requests/carts_request_spec.rb
-   - spec/requests/admin_shipments_spec.rb
-   - spec/requests/admin_orders_statuses_spec.rb
+    - spec/system/**
+    - spec/requests/**
+    - spec/services/**
 RSpec/ExampleLength:
   Exclude:
     - spec/system/**

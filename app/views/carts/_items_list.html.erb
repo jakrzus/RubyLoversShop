@@ -12,16 +12,32 @@
             <%= item_presenter.description %>
           </div>
         </div>
-        <div class="row">
+        <div class="row mt-3">
           <div class="col">
-            <%= number_to_currency item_presenter.price %>
+            Item price: 
+            <h6><%= number_to_currency item_presenter.price %></h6>
+          </div>
+          <div class="col-6">
+            <%= form_with model: item, local: true do |f|%>
+              <div class="form-row">
+                <div class="form-group mx-2">
+                  <%= f.label :quantity, class: "form-control-plaintext" %>
+                </div>
+                <div class="form-group mx-1">
+                  <%= f.number_field :quantity, min: 0, max: 99, class: "form-control" %>
+                </div>
+                <div class="form-group mx-1">
+                  <%= f.submit "Update", disable_with: 'Updating...', class: "btn btn-primary" %>
+                </div>
+              </div>
+            <% end %>
           </div>
           <div class="col">
-            X <%= item.quantity %>
+            <%= button_to "Remove", cart_item_path(item), method: :delete, class: "btn btn-danger" %>
           </div>
           <div class="col">
             Item total: 
-            <h6><%= number_to_currency(item_presenter.total_price) %></h6>
+            <h4><%= number_to_currency(item_presenter.total_price) %></h4>
           </div>
         </div>
       </li>

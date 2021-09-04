@@ -3,7 +3,7 @@
 require 'rails_helper'
 require './spec/support/helpers'
 
-RSpec.describe 'AdminProducts', type: :request do # rubocop:disable Metrics/BlockLength
+RSpec.describe 'AdminProducts', type: :request do
   let!(:category) { create :category }
   let!(:brand) { create :brand }
   let!(:new_product) { build_stubbed :product }
